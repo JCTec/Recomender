@@ -1,0 +1,31 @@
+id,carrera,habilidades
+1,Arquitectura,Construcción - Planeación - Estética - Matemática - Dibujo - Lógica - Creatividad
+2,Comunicación,Creatividad - ExpresionOral - ExpresionEscrita - Estética - Publicidad - ProdAudiovisual
+3,Dirección de Empresas de Entretenimiento,Planeación - Creatividad - Administración - ExpresionOral - ExpresionEscrita - Publicidad - Administración
+4,Diseño de Moda e Innovación,Estética - Creatividad - ProdAudiovisual - Diseño - Moda - Dibujo
+5,Diseño Gráfico,Estética - Creatividad - ProdAudiovisual - Diseño - Digital - Dibujo - Publicidad
+6,Diseño Industrial,Estética - Creatividad - Diseño - Dibujo - Taller - Construcción - Manufactura
+7,Diseño Multimedia,Estética - Creatividad - ProdAudiovisual - Diseño - Dibujo - Programación - Publicidad
+8,Relaciones Internacionales,Planeación - Diplomacia - ExpresionEscrita - ExpresionOral - Lectura - Gobierno - Internacional
+9,Derecho,Lectura - ExpresionOral - ExpresionEscrita - Diplomacia - Gobierno
+10,Ingeniería Ambiental,Lógica - Matemática - Ambiente - Construcción - Tecnología - Física - Quimica
+11,Ingeniería en Energía Sustentables,Lógica - Matemática - Ambiente - Construcción - Tecnología - Física - Quimica - Energía
+12,Ingeniería Biomédica,Lógica - Matemática - Salud - Tecnología - Física - Quimica - Servicio - Manufactura
+13,Ingeniería en Tecnologías de Información y Negocios Digitales,Lógica - Matemática - Digital - Tecnología - Programación - Planeación - Administración
+14,Ingeniería en Animación Digital,Estética - Creatividad - ProdAudiovisual - Lógica - Matemática - Dibujo - Digital - Publicidad - Tecnología
+15,Ingeniería Mecatrónica,Lógica - Matemática - Tecnología - Programación - Manufactura - Quimica - Física
+16,Ingeniería Civil,Construcción - Planeación - Quimica - Matemática - Física - Lógica - Administración - Tecnología - Taller
+17,Ingeniería Industrial,Manufactura - Planeación - Quimica - Matemática - Física - Lógica - Administración - Tecnología - Taller
+18,Administración y dirección de empresas,Planeación - Administración - ExpresionOral - ExpresionEscrita - Negocios
+19,Finanzas y Contaduría Pública,Administración - ExpresionEscrita - Negocios - Matemática - Gobierno
+20,Mercadotecnía Estratégica,Administración - ExpresionEscrita - Negocios - ExpresioOral - Publicidad - ExpresionOral
+21,Negocios Internacionales,Administración - Negocios - ExpresionEscrita - ExpresionOral - Planeacion - Internacional
+22,Gastronomía,Internacional - Creatividad - Servicio - Cocina - Lectura - Estética - Negocios
+23,Turismo Internacional,Internacional - Creatividad - Servicio - ExpresionOral - Lectura - Estética - Negocios - Turismo
+24,Biotecnología,Quimica - Biología - Tecnología - Matemática - Lógica - Salud
+25,Terapia Física y Rehabilitación,Salud - Servicio - Biología - Bienestar
+26,Psicología,Salud - ExpresionOral - ExpresionEscrita - Servicio - Bienestar - Administración
+27,Psicopedagogía,Salud - ExpresionOral - ExpresionEscrita - Servicio - Bienestar - Educación - Creatividad
+28,Médico Cirujano Dentista,Salud - Servicio - Fisica - Quimica - Biología - Lógica - Lectura
+29,Médico Cirujano,Salud - Servicio - Fisica - Quimica - Biología - Lógica - Lectura
+30,Nutrición,Salud - Servicio - Biología - Servicio - Bienestar - Quimica
