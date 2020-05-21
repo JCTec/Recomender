@@ -81,9 +81,9 @@ class ContentKNN(AlgoBase):
                 valuesToPredict.append(1)
             else:
                 valuesToPredict.append(0)
-        valuesToPredict = valuesToPredict[:len(valuesToPredict)-14]
-        valuesToPredict = np.array(valuesToPredict).reshape(1,22)
-        #valuesToPredict = np.array(valuesToPredict).reshape(1,len(list(habilidades_dict.keys())))
+        # valuesToPredict = valuesToPredict[:len(valuesToPredict)-14]
+        # valuesToPredict = np.array(valuesToPredict).reshape(1,22)
+        valuesToPredict = np.array(valuesToPredict).reshape(1,len(list(habilidades_dict.keys())))
         print(valuesToPredict.shape)
 
         #print(self.model.predict_proba(valuesToPredict))
@@ -107,9 +107,11 @@ class ContentKNN(AlgoBase):
 
         #print(predictedByLogit)
         #print(probabilities[0][0])
+        copia_k_neighbors = []
 
-        for i in range(len(k_neighbors)):
-            if k_neighbors[i][1] == predictedByLogit:
-                k_neighbors[i][0] = k_neighbors[i][0] + (k_neighbors[i][0] + probabilities[0][0])/3
+        # for i in range(len(k_neighbors)):
+        #     if k_neighbors[i][1] == predictedByLogit:
+        #         copia_k_neighbors[i][0] = k_neighbors[i][0] + (k_neighbors[i][0] + probabilities[0][0])/3
+
 
         return [{'name': data.getCarreraName(item[1]), 'percentage': item[0]} for item in k_neighbors]
