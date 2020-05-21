@@ -29,8 +29,10 @@ class AnswersAPI(APIView):
             answers = data["quiz"]
             questions = Question.objects.filter(id__in=answers)
             tags = {questions.get(pk=key).tag.name: val for key, val in answers.items()}
-
-            return Response(dict(status="Success", data=ContentKNN().predict(tags)))
+            History(value=json.dumps(tags)).save()
+            knn = ContentKNN()
+            
+            return Response(dict(status="Success", data=knn.predict(tags)))
         except Exception as e:
             return Response(dict(status="Error", errors=['Not found', str(e)]), status.HTTP_500_INTERNAL_SERVER_ERROR)
 
