@@ -52,11 +52,8 @@ class ContentKNN(AlgoBase):
         for habilidad in habilidades2:
             index = habilidadesDict[habilidad]
             x = habilidades1[index]
-            y = habilidades2[habilidad]
-            if y == 'false':
-                y = 0
-            else:
-                y=1
+            y = 1 if habilidades2[habilidad] else 0
+
             sumxx += x * x
             sumyy += y * y
             sumxy += x * y
@@ -66,40 +63,23 @@ class ContentKNN(AlgoBase):
         else:
             return sumxy/math.sqrt(sumxx*sumyy)
 
-    def predict(self, arrayUsuarios, limit=3):
-
-        # if not (self.trainset.knows_user(u) and self.trainset.knows_item(i)):
-        # raise PredictionImpossible('User and/or item is unkown.')
-
-        # Build up similarity scores between this item and everything the user rated
+    def predict(self, array_usuarios, limit=3):
         neighbors = []
         data = Carreras()
         data.loadCarreras()
         habilidades = data.getHabilidades()
-        habilidadesDict = data.getHabiliadesdDict()
+        habilidades_dict = data.getHabiliadesdDict()
 
-        for carrera in range(1, 31, 1):
-            userXCarreraSimilarity = self.calculateSimHabilidades(carrera, arrayUsuarios, habilidades, habilidadesDict)
-            neighbors.append((userXCarreraSimilarity, carrera))
+        for carrera in range(1, len(habilidades) + 1):
+            user_x_carrera_similarity = self.calculateSimHabilidades(carrera,
+                                                                     array_usuarios,
+                                                                     habilidades,
+                                                                     habilidades_dict)
+            neighbors.append((user_x_carrera_similarity, carrera))
 
-        print(neighbors)
-
-        # Extract the top-K most-similar ratings
         neighbors.sort(reverse=True)
         k_neighbors = neighbors
-        k_neighbors = k_neighbors[:3]
-        respuestaJSON = [{'name': data.getCarreraName(item[1]), 'percentage': item[0]} for item in k_neighbors]
+        k_neighbors = k_neighbors[:int(limit)]
 
-        # Compute average sim score of K neighbors weighted by user ratings
-        # simTotal = weightedSum = 0
-        # for simScore in k_neighbors:
-        # if (simScore > 0):
-        # simTotal += simScore
-
-        # if (simTotal == 0):
-        # raise PredictionImpossible('No neighbors')
-
-        # predictedRating = weightedSum / simTotal
-
-        return respuestaJSON
+        return [{'name': data.getCarreraName(item[1]), 'percentage': item[0]} for item in k_neighbors]
 
