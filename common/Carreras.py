@@ -2,35 +2,36 @@ import os
 import csv
 import sys
 import re
-import numpy as np
+
 import pandas as pd
+
 from surprise import Dataset
 from surprise import Reader
-from common.flatten import flatten
-from collections import defaultdict
 
+from flatten import flatten
+from collections import defaultdict
+import numpy as np
 
 class Carreras:
-    carreras_path = 'common/CarrerasFull.csv'
-    carrera_id_to_name = {}
-    carrera_name_to_carrera_id = {}
+    carrerasPath = 'CarrerasFull.csv'
+    carreraID_to_name = {}
+    carreraName_to_carreraID = {}
     habDict = {} 
 
     def loadCarreras(self):
-        self.carrera_id_to_name = {}
-        self.carrera_name_to_carrera_id = {}
-
-        with open(self.carreras_path, newline='', encoding='utf8') as csvfile:
+        self.carreraID_to_name = {}
+        self.carreraName_to_carreraID = {}
+        with open(self.carrerasPath, newline='', encoding='utf8') as csvfile:
                 carrerasReader = csv.reader(csvfile)
                 next(carrerasReader)  #Skip header line
                 for row in carrerasReader:
                     carreraID = int(row[0])
                     carreraName = row[1]
-                    self.carrera_id_to_name[carreraID] = carreraName
-                    self.carrera_name_to_carrera_id[carreraName] = carreraID
+                    self.carreraID_to_name[carreraID] = carreraName
+                    self.carreraName_to_carreraID[carreraName] = carreraID
 
     def getDataset(self):
-        df = pd.read_csv(self.carreras_path)
+        df = pd.read_csv(self.carrerasPath)
         habilidades = flatten(df['habilidades'].to_numpy())
         del df['habilidades']
         df  = pd.concat([df, habilidades], axis=1, join='inner')
@@ -41,7 +42,7 @@ class Carreras:
         habilidades = defaultdict(list)
         habilidadesIDs = {}
         maxHabilidadesID = 0
-        with open(self.carreras_path, newline='', encoding='utf8') as csvfile:
+        with open(self.carrerasPath, newline='', encoding='utf8') as csvfile:
             carrerasReader = csv.reader(csvfile)
             next(carrerasReader)  #Skip header line
             for row in carrerasReader:
@@ -70,19 +71,22 @@ class Carreras:
         return habilidades
 
     def getCarreraName(self, carreraID):
-        if carreraID in self.carrera_id_to_name:
-            return self.carrera_id_to_name[carreraID]
+        if carreraID in self.carreraID_to_name:
+            return self.carreraID_to_name[carreraID]
         else:
             return ""
 
-    def getHabilidadID(self, habilidad):
+    def getHabilidadID(self,habilidad):
         return self.habDict[habilidad]
-      
+    
+    def getHabilidadesList(self):
+        return list(self.habDict.keys())
+
     def getHabiliadesdDict(self):
         return self.habDict
 
     def getCarreraID(self, carreraName):
-        if carreraName in self.carrera_name_to_carrera_id:
-            return self.carrera_name_to_carrera_id[carreraName]
+        if carreraName in self.carreraName_to_carreraID:
+            return self.carreraName_to_carreraID[carreraName]
         else:
             return 0
