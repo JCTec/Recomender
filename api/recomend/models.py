@@ -22,4 +22,4 @@ class Question(models.Model):
 class History(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     value = models.CharField(max_length=1500)
-    result = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True, blank=True)
+    result = models.ForeignKey(Subject, on_delete=models.SET_NULL)
