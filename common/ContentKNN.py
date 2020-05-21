@@ -66,23 +66,40 @@ class ContentKNN(AlgoBase):
         else:
             return sumxy/math.sqrt(sumxx*sumyy)
 
-    def predict(self, array_usuarios, limit=3):
+    def predict(self, u, limit=3):
+
+        # if not (self.trainset.knows_user(u) and self.trainset.knows_item(i)):
+        # raise PredictionImpossible('User and/or item is unkown.')
+
+        # Build up similarity scores between this item and everything the user rated
         neighbors = []
         data = Carreras()
         data.loadCarreras()
         habilidades = data.getHabilidades()
-        habilidades_dict = data.getHabiliadesdDict()
+        habilidadesDict = data.getHabiliadesdDict()
 
-        for carrera in range(1, len(habilidades) + 1):
-            user_x_carrera_similarity = self.calculateSimHabilidades(carrera,
-                                                                     array_usuarios,
-                                                                     habilidades,
-                                                                     habilidades_dict)
-            neighbors.append((user_x_carrera_similarity, carrera))
+        arrayUsuarios = json.loads(u)
 
+        for carrera in range(1, 31, 1):
+            userXCarreraSimilarity = self.calculateSimHabilidades(carrera, arrayUsuarios, habilidades, habilidadesDict)
+            neighbors.append((userXCarreraSimilarity, carrera))
+
+        # Extract the top-K most-similar ratings
         neighbors.sort(reverse=True)
         k_neighbors = neighbors
-        k_neighbors = k_neighbors[:int(limit)]
+        k_neighbors = k_neighbors[:3]
+        respuestaJSON = [{'name': data.getCarreraName(item[1]), 'percentage': item[0]} for item in k_neighbors]
 
-        return [{'name': data.getCarreraName(item[1]), 'percentage': item[0]} for item in k_neighbors]
+        # Compute average sim score of K neighbors weighted by user ratings
+        # simTotal = weightedSum = 0
+        # for simScore in k_neighbors:
+        # if (simScore > 0):
+        # simTotal += simScore
+
+        # if (simTotal == 0):
+        # raise PredictionImpossible('No neighbors')
+
+        # predictedRating = weightedSum / simTotal
+
+        return respuestaJSON
 
