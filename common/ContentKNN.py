@@ -66,7 +66,7 @@ class ContentKNN(AlgoBase):
         else:
             return sumxy/math.sqrt(sumxx*sumyy)
 
-    def predict(self, u, limit=3):
+    def predict(self, arrayUsuarios, limit=3):
 
         # if not (self.trainset.knows_user(u) and self.trainset.knows_item(i)):
         # raise PredictionImpossible('User and/or item is unkown.')
@@ -77,8 +77,6 @@ class ContentKNN(AlgoBase):
         data.loadCarreras()
         habilidades = data.getHabilidades()
         habilidadesDict = data.getHabiliadesdDict()
-
-        arrayUsuarios = json.loads(u)
 
         for carrera in range(1, 31, 1):
             userXCarreraSimilarity = self.calculateSimHabilidades(carrera, arrayUsuarios, habilidades, habilidadesDict)
