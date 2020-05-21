@@ -28,7 +28,7 @@ class AnswersAPI(APIView):
             data = json.loads(request.body.decode('utf-8'))
             answers = data["quiz"]
             history = History.objects.all()
-            historic = [json.loads(item.value) for item in history]
+            historic = [(json.loads(item.value), item.result.name) for item in history]
             print(historic)
             questions = Question.objects.filter(id__in=answers)
             tags = {questions.get(pk=key).tag.name: val for key, val in answers.items()}
