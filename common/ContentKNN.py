@@ -82,6 +82,8 @@ class ContentKNN(AlgoBase):
             userXCarreraSimilarity = self.calculateSimHabilidades(carrera, arrayUsuarios, habilidades, habilidadesDict)
             neighbors.append((userXCarreraSimilarity, carrera))
 
+        print(neighbors)
+
         # Extract the top-K most-similar ratings
         neighbors.sort(reverse=True)
         k_neighbors = neighbors
