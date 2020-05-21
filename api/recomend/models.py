@@ -18,3 +18,7 @@ class Question(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True, blank=True)
     value = models.CharField(max_length=500)
 
+
+class History(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    value = models.CharField(max_length=1500)
