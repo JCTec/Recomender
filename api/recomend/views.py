@@ -29,10 +29,13 @@ class AnswersAPI(APIView):
             answers = data["quiz"]
             history = History.objects.all()
             historic = [(json.loads(item.value), item.result.name) for item in history]
-            print(historic)
+            # TODO: Fit with historic
+
             questions = Question.objects.filter(id__in=answers)
             tags = {questions.get(pk=key).tag.name: val for key, val in answers.items()}
+
             knn = ContentKNN()
+            # knn.fit()
             prediction = knn.predict(tags)
 
             try:
