@@ -27,6 +27,8 @@ class AnswersAPI(APIView):
         try:
             data = json.loads(request.body.decode('utf-8'))
             answers = data["quiz"]
+            history = History.objects.all()
+            print(history.first().value)
             questions = Question.objects.filter(id__in=answers)
             tags = {questions.get(pk=key).tag.name: val for key, val in answers.items()}
             knn = ContentKNN()
